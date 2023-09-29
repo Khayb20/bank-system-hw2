@@ -1,4 +1,4 @@
-package bank.exceptions;
+package bank.accounts;
 
 public class InsufficientFundsException {
     
