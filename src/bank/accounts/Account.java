@@ -2,10 +2,13 @@ package bank.accounts;
 
 public abstract class Account {
 
-    protected Account successor;
+    public double balance;
+    public Account successor;
+    public String name;
 
-    public Account(Account nextAccount){
+    public Account(Account nextAccount, String name){
         this.successor = nextAccount;
+        this.name = name;
     }
 
     public void setNext(Account nextAccount){

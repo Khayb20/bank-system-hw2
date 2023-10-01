@@ -2,15 +2,32 @@ package bank.accounts;
 
 public class CreditAccount extends Account{
 
-    protected double limit;
+    public double limit;
+    public double limitLeft;
 
-    public CreditAccount(double amount, Account nextAccount){
-        super(nextAccount);
-        limit = amount;
+    public CreditAccount(double limit, Account nextAccount){
+        super(nextAccount, "credit");
+        this.limit = limit;
     }
         
-    public void deduct(double amount){}
+    public void deduct(double amount) throws InsufficientFundsException{
+        try {
+            charge(amount);
+        } catch (InsufficientFundsException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void charge(double amount) throws InsufficientFundsException{
 
-    public void charge(double amount){}
+        if(limit >= amount){
+            balance += amount;
+            limitLeft = limit - balance;
+            System.out.println(limitLeft);
+        }else{
+            throw new InsufficientFundsException("You have insufficient funds in your accounts");
+        }
+        
+    }
 
 }

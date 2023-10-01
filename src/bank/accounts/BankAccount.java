@@ -2,10 +2,8 @@ package bank.accounts;
 
 public class BankAccount extends Account{
 
-    protected double balance;
-
-    public BankAccount(double amount, Account nextAccount){
-        super(nextAccount);
+    public BankAccount(double amount, String name, Account nextAccount){
+        super(nextAccount, name);
         balance = amount;
     }
     
@@ -14,11 +12,11 @@ public class BankAccount extends Account{
     }
     
     public void deduct(double amount) throws InsufficientFundsException{
-        if(balance > amount){
+        if(balance >= amount){
             balance -= amount;
-        }else if(successor != null){
-            successor.deduct(amount);
-        }else{
+            System.out.println(balance);
+        }
+        else{
             throw new InsufficientFundsException("You have insufficient funds in your accounts");
         }
     }
