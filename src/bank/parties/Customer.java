@@ -12,20 +12,43 @@ import bank.accounts.BankAccount;
 import bank.accounts.CreditAccount;
 import bank.accounts.InsufficientFundsException;
 
-/** */
+
+/**
+ * The Customer class represents a bank customer who can have multiple accounts,
+ * including checking, savings, and credit accounts. It implements the PayingParty
+ * interface to handle payments and maintain balances across accounts.
+ * @author Kobby Asante-Ansong
+ */
 public class Customer implements PayingParty {
     
+    /** The primary checking account associated with the customer. */
     private BankAccount checking = new BankAccount(0, "checking", null);
+
+    /** List of savings accounts associated with the customer. */
     private List<BankAccount> savingsAccounts = new ArrayList<>();
+
+    /** List of credit accounts associated with the customer. */
     private List<CreditAccount> creditAccounts = new ArrayList<>();
+
+    /** A map to track the original balances of all accounts for reset purposes. */
     private Map<Account, Double> balanceTracker = new HashMap<>();
 
+
+    /**
+     * Constructs a Customer with an initial checking account.
+     *
+     * @param checking The initial checking account associated with the customer.
+     */
     public Customer(BankAccount checking){
         this.checking = checking;
     }
 
     /**
-     * 
+     * Initiates a payment transaction by deducting the specified amount from the
+     * customer's accounts. Handles insufficient funds using the CheckProcessor and
+     * an InsufficientFundsException.
+     *
+     * @param amount The amount to be paid.
      */
     public void pay(double amount){
         storeBalances();
@@ -71,6 +94,10 @@ public class Customer implements PayingParty {
         resetAccounts();
     }
 
+    /**
+     * Stores the current balances of all accounts in the balanceTracker map for
+     * later use in resetting account balances.
+     */
     private void storeBalances(){
         balanceTracker.put(checking, checking.balance);
         for(BankAccount account: savingsAccounts){
@@ -81,6 +108,11 @@ public class Customer implements PayingParty {
         }
     }
 
+    /**
+     * Resets all account balances and credit limits to their original values stored
+     * in the balanceTracker map.
+     * @author Kobby Asante-Ansong
+     */
     private void resetAccounts(){
         for(Map.Entry<Account, Double> entry : this.balanceTracker.entrySet()){
             Account account = entry.getKey();
@@ -92,6 +124,12 @@ public class Customer implements PayingParty {
         }
     }
 
+    /**
+     * Adds an account to the customer's list of accounts, either a savings or
+     * credit account.
+     *
+     * @param account The account to be added.
+     */
     public void addAccount(Account account){
         if(account.name.equals("savings")){
             savingsAccounts.add((BankAccount) account);

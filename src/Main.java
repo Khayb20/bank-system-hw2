@@ -2,6 +2,12 @@ import bank.accounts.BankAccount;
 import bank.accounts.CreditAccount;
 import bank.parties.Customer;
 
+/**
+ * The Main class contains the main method and serves as the entry point for the
+ * program. It demonstrates the usage of the Customer class and various bank accounts
+ * to initiate payment transactions.
+ * @author Kobby Asante-Ansong
+ */
 class Main{
 
     public static void main(String[] args){
