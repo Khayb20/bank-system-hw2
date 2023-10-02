@@ -8,6 +8,7 @@ public class CreditAccount extends Account{
     public CreditAccount(double limit, Account nextAccount){
         super(nextAccount, "credit");
         this.limit = limit;
+        this.limitLeft = limit;
     }
         
     public void deduct(double amount) throws InsufficientFundsException{

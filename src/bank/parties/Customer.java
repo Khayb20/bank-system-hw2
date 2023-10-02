@@ -31,6 +31,7 @@ public class Customer implements PayingParty {
         storeBalances();
         if(CheckProcessor.processCheck(checking, amount)){
             System.out.println("SUCCESS!!");
+            return;
         }else{
             Account previousAccount = checking;
             for(BankAccount account: savingsAccounts){
