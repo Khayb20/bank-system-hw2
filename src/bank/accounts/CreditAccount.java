@@ -14,7 +14,8 @@ public class CreditAccount extends Account{
         try {
             charge(amount);
         } catch (InsufficientFundsException e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
+            throw new InsufficientFundsException("You have insufficient funds in your accounts");
         }
     }
     

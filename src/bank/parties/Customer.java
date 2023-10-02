@@ -12,6 +12,7 @@ import bank.accounts.BankAccount;
 import bank.accounts.CreditAccount;
 import bank.accounts.InsufficientFundsException;
 
+/** */
 public class Customer implements PayingParty {
     
     private BankAccount checking = new BankAccount(0, "checking", null);
@@ -23,6 +24,9 @@ public class Customer implements PayingParty {
         this.checking = checking;
     }
 
+    /**
+     * 
+     */
     public void pay(double amount){
         storeBalances();
         if(CheckProcessor.processCheck(checking, amount)){

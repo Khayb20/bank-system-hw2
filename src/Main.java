@@ -10,7 +10,7 @@ class Main{
         consumer.addAccount(new BankAccount(10, "savings", null));
         consumer.addAccount(new CreditAccount(50, null));
         consumer.pay(320);
-        // consumer.pay(210);
+        consumer.pay(300);
         System.out.println("Hello world!");
     }
 }
